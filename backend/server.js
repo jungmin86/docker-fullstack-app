@@ -15,15 +15,20 @@ app.use(bodyParser.json());
 //     value TEXT,
 //     PRIMARY KEY (id)
 // )`, (err, results, fields) => {
-//     console.log('results', results);
+//     if(err) console.log("err");
+//     console.log('results11', results);
 // })
 
 //DB lists 테이블에 있는 모든 데이터를 프론트 서버에 보내주기
 app.get('/api/values', function(req, res) {
     //DB에서 모든 정보 가져오기
     db.pool.query('SELECT * FROM lists;', (err, results, fields) => {
-        if(err) return res.status(500).send(err);
-        else return res.json(results);
+        if(err) {
+            console.log("안됨");
+            return res.status(500).send(err);
+        }
+        else 
+            return res.json(results);
     })
 })
 
@@ -31,8 +36,9 @@ app.get('/api/values', function(req, res) {
 app.post('/api/value', function(req, res, next) {
     //데이터베이스에 값 넣어주기
     db.pool.query(`INSERT INTO lists (value) VALUES("${req.body.value}")`), (err, results, fields) => {
-        if(err) return res.status(500).send(err)
-        else return res.json({ success: true, value: req.body.value })
+        if(err) return res.status(500).send(err);
+        else 
+            return res.json({ success: true, value: req.body.value });
     }
 })
 

@@ -1,5 +1,6 @@
 version: "3"
 services:
+
   frontend:
     build:
       dockerfile: Dockerfile.dev
@@ -10,6 +11,15 @@ services:
       - ./frontend:/app
     stdin_open: true
 
+  nginx:
+    restart: always
+    build: 
+      dockerfile: Dockerfile
+      context: ./nginx
+    container_name: app_nginx
+    ports:
+      - "3000:80"
+
   backend:
     build:
       dockerfile: Dockerfile.dev
@@ -19,16 +29,10 @@ services:
       - /app/node_modules
       - ./backend:/app
 
-  nginx:
-    restart: always
+  mysql:
     build: 
       dockerfile: Dockerfile
-      context: ./nginx
-    ports:
-      - "3000:80"
-
-  mysql:
-    build: ./mysql
+      context: ./mysql
     restart: unless-stopped
     container_name: app_mysql
     ports: 
@@ -39,3 +43,4 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: jungmin86
       MYSQL_DATABASE: myapp
+

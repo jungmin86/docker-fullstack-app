@@ -30,9 +30,7 @@ services:
       - ./backend:/app
 
   mysql:
-    build: 
-      dockerfile: Dockerfile
-      context: ./mysql
+    build: ./mysql
     restart: unless-stopped
     container_name: app_mysql
     ports: 

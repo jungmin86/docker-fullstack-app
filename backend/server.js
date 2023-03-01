@@ -1,7 +1,7 @@
 // 필요한 모듈
 const express = require('express');
 const bodyParser = require('body-parser');
-const db = require('./db.js');
+const db = require('./db');
 
 // express 서버 생성
 const app = express();
@@ -27,19 +27,24 @@ app.get('/api/values', function(req, res) {
             console.log("안됨");
             return res.status(500).send(err);
         }
-        else 
+        else {
+            console.log("됨");
             return res.json(results);
+        }
+            
     })
 })
 
 //클라이언트에서 입력한 값을 데이터베이스 lists 테이블에 넣어주기
-app.post('/api/value', function(req, res, next) {
+app.post('/api/value', function (req, res, next) {
     //데이터베이스에 값 넣어주기
-    db.pool.query(`INSERT INTO lists (value) VALUES("${req.body.value}")`), (err, results, fields) => {
-        if(err) return res.status(500).send(err);
-        else 
-            return res.json({ success: true, value: req.body.value });
-    }
+    db.pool.query(`INSERT INTO lists (value) VALUES("${req.body.value}")`,
+        (err, results, fileds) => {
+            if (err)
+                return res.status(500).send(err)
+            else
+                return res.json({ success: true, value: req.body.value })
+        })
 })
 
 app.listen(5000, () => {

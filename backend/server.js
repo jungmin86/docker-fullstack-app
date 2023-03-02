@@ -10,14 +10,14 @@ const app = express();
 app.use(bodyParser.json());
 
 // lists 테이블 생성하기
-// db.pool.query(`CREATE TABLE lists (
-//     id INTEGER AUTO_INCREMENT,
-//     value TEXT,
-//     PRIMARY KEY (id)
-// )`, (err, results, fields) => {
-//     if(err) console.log("err");
-//     console.log('results11', results);
-// })
+db.pool.query(`CREATE TABLE lists (
+    id INTEGER AUTO_INCREMENT,
+    value TEXT,
+    PRIMARY KEY (id)
+)`, (err, results, fields) => {
+    if(err) console.log("err");
+    console.log('results11', results);
+})
 
 //DB lists 테이블에 있는 모든 데이터를 프론트 서버에 보내주기
 app.get('/api/values', function(req, res) {

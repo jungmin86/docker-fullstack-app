@@ -1,11 +1,10 @@
 const mysql = require('mysql');
 const pool = mysql.createPool({
     connectionLimit: 10,
-    host: process.env.MYSQL_HOST,
-    user: process.env.MYSQL_USER,
-    password: process.env.MYSQL_PASSWORD,
-    database: process.env.MYSQL_DATABASE,
-    port: process.env.MYSQL_PORT
+    host: 'docker-fullstack-mysql.cg1m58ylhmwv.ap-northeast-2.rds.amazonaws.com',
+    user: 'root',
+    password: 'jungmin86',
+    database: 'myapp'
 });
 
 exports.pool = pool;

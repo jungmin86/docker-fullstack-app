@@ -59,11 +59,11 @@ services:
       - /app/node_modules
       - ./backend:/app
     environment:
-      MYSQL_HOST: $MYSQL_HOST
-      MYSQL_USER: $MYSQL_USER
-      MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
-      MYSQL_DATABASE: $MYSQL_DATABASE
-      MYSQL_PORT: $MYSQL_PORT
+      MYSQL_HOST: docker-fullstack-mysql.cg1m58ylhmwv.ap-northeast-2.rds.amazonaws.com
+      MYSQL_USER: root
+      MYSQL_ROOT_PASSWORD: jungmin86
+      MYSQL_DATABASE: myapp
+      MYSQL_PORT: 3306
     mem_limit: 128m
 
   # mysql:

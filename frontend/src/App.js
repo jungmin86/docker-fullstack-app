@@ -52,11 +52,11 @@ function App() {
           <form className="example" onSubmit={submitHandler}>
             <input
               type="text"
-              placeholder="입력해주세요..."
+              placeholder="반갑습니다!"
               onChange={changeHandler}
               value={value}
             />
-            <button type="submit">확인.</button>
+            <button type="submit">등록</button>
           </form>
         </div>
       </header>
